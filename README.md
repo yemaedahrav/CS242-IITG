@@ -1,3 +1,3 @@
 # CS242-IITG
 
-Solutions to Assignments of CS242 Assignments 
+Solutions to Problems of CS242 Assignments 
