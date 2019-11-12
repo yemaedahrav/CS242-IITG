@@ -1,0 +1,36 @@
+<html>
+   <head>
+     <script>
+        
+      var originalarr = [ 'F' , 'O' , 'X' ];
+      var newarr = [ '_' ,'_','_'];
+ 
+      function Guessletter() 
+             { 
+               var gl = prompt('Guess the letter : ' );
+    
+                 for(i =0;i<3;i++)
+                   {  if( originalarr[i] == gl)
+                      {  newarr[i] = gl;
+                         alert('You have guessed the correct letter,Congrats !');
+                         alert(newarr);
+                      }
+                      
+                   }
+              }
+
+      while(1)
+          {  Guessletter();
+             if(newarr[0] == 'F' && newarr[1] == 'O' && newarr[2] == 'X' )
+               {  alert('Congratulations you have won the game !!!');
+                  break;
+               }
+             
+          }
+
+     </script>
+   </head>
+<body>
+</body>
+
+</html>
