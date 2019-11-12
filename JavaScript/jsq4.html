@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function getArray(s) {
+			var st = (s.split(" "));
+			return st;
+		}
+		function join(s) {
+			var res = "";
+			for(var i in s) {
+				res += s[i];
+			}
+			return res;
+		}
+		var a = prompt("Enter array sequence(space separated) : ");
+		console.log(join(getArray(a)));
+	</script>
+</head>
+<body>
+</body>
+</html>
