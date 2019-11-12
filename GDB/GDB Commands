@@ -1,5 +1,6 @@
 Compilation :
 
+g++ -g filename.cc -o filename 
 
 Commands :
 
