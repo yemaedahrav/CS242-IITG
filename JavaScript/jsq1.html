@@ -1,0 +1,43 @@
+<html>
+    <body>
+    <script>
+    
+    num = prompt('Enter number' );
+    if(num ==1)
+      { alert(' Happy NUmber ')                      }
+ 
+    function convert(num){
+    digits = String(num);
+    final = 0;
+    for(i=0;i<digits.length;i++)
+        {  
+           dig = Number(digits[i]);
+           sqrdig = dig*dig;
+           final += sqrdig;
+        }
+    if(num==final && final!=1)
+       return 0;
+    return final;
+    }
+
+    final = convert(num)
+
+    while( final > 1)
+         {  if(convert(final) == 0 )
+              { alert('Sad Number !');
+            break; }
+            else
+              { final = convert(final);
+                if(final == 1)
+                alert('Happy Number !!!');
+              }
+               
+         }
+   
+    </script>
+    </body>
+
+   <head>
+   </head>
+
+  </html>
