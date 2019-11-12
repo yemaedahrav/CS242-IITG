@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		var a = prompt("Enter input : ");
+		function isBlank(a) {
+			return (a === "");
+		}
+		function isString(a) {
+			var b = Number(a);
+			return isNaN(b);
+		}
+		function splitString(a) {
+			return a.split(" ");
+		}
+		function isEmail(a) {
+			// var b = a.split(".");
+			var atcount = 0;
+			var dotcount = 0;
+			for(i of a) {
+				if(i==="@") atcount++;
+				if(i===".") dotcount++;
+			}
+			return (atcount===1 &&  dotcount>0);
+		}
+		if(!isEmail(a)) alert("Not valid email!!!");
+		else console.log("Got the email id.");
+	</script>
+</head>
+<body>
+</body>
+</html>
