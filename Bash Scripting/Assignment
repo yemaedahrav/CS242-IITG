@@ -1,0 +1,396 @@
+1 // contents of the shell script
+
+  $ echo 'chmod +x $1' >exec_mode    
+  $ echo "echo Hello Amey">test
+  $ bash q1.sh q1.sh
+  $ ./exec_mode test  OR  $bash exec-mode test
+  $ ./test            OR  $bash test
+
+
+2 $ echo The date today is `date`
+
+
+3 // contents of the shell script
+  
+  $ echo `pwd`
+  $ curdir=`pwd`
+  $ cd /
+  $ echo `pwd`
+  $ cd $curdir
+  $ echo `pwd`
+
+
+4 // contents of the shell script (gives files and directories both)
+
+      #! /bin/bash
+
+       for i in * 
+       do
+          echo $i
+       done
+
+    OR
+
+  // contents of the shell script (gives only files)
+
+   $ for f in $(ls -p| grep -v /); do echo $f; done;
+
+5 // contents of the shell script
+
+     #!/bin/bash
+
+      read -p 'Username' uservar
+      read -sp 'Password' passvar
+      echo Your username is $uservar
+      echo Your password is $passvar
+
+
+6 $ echo Number of arguments passed is "$#"
+
+
+7 // contents of the shell script
+
+     #! /bin/bash
+
+     #Amey Varhade
+     #180101087
+     #Semester III
+     #Program for question 7
+
+     echo This is the first shell program.Please enter your username
+     read -p 'username' uservar
+     echo "Username: $uservar "
+
+     #End of Program 
+
+
+
+8 // contents of the shell script
+
+   #! /bin/bash
+
+read -p "Enter the integer : " integer
+
+if [ $integer -gt 0 ]
+then
+    echo "The integer is positive"
+elif [ $integer -lt 0 ]
+then 
+    echo "The integer is negative"
+else [ $integer == 0 ]
+    echo " The number is 0(zero)"
+fi
+
+
+9 // contents of the shell script
+    
+   #! /bin/bash
+
+read -p 'Enter filename : ' filename
+
+touch $filename
+
+if [ -e $filename ]
+then 
+    echo "file exists"
+else
+    echo "the file does not exist"
+fi
+
+
+if [ -r $filename ]
+then 
+    echo "file has read permission"
+else
+    echo "the file does not have read permission"
+fi
+
+
+if [ -w $filename ]
+then 
+    echo "file has write permission"
+else
+    echo "the file does not have write permission"
+fi
+
+
+if [ -x $filename ]
+then 
+    echo "file has execute permission"
+else
+    echo "the file does not have execute permission"
+fi
+
+
+10 // conetents of the shell script
+
+#! /bin/bash
+
+	read -a nums
+	sum=0
+	n=5
+	m=$n
+	while [ $n -gt 0 ]
+	do
+	  num=${nums[`expr $n - 1`]}
+	  sum=`expr $sum + $num`
+	  n=`expr $n - 1`
+	done
+
+	avg=`echo "$sum / $m" | bc -l`
+	printf '%0.2f' "$avg"
+	echo
+
+
+11 // contents of the shell script
+   
+   #! /bin/bash
+
+	a=20.5
+	b=5
+	pow=`echo "$a ^ $b" | bc -l`
+	printf '%0.4f' "$pow"
+	echo
+
+
+13 //contents of the shell script
+
+   #! /bin/bash
+
+read -p 'Enter first number' num1
+read -p 'Enter second number' num2
+read -p 'Enter the operation' op
+
+case $op in
+   "+" )
+     echo " $((num1+num2))" ;;
+   "-" )
+     echo " $((num1-num2))" ;;
+   "x" )
+     echo " $((num1*num2))" ;;
+   "/" )
+     echo " $((num1/num2))" ;;
+   * )
+     echo " unknown operation";;
+esac
+
+
+14 // contents of the shell script
+
+ #! /bin/bash
+
+read -p 'Enter first number' num1
+read -p 'Enter second number' num2
+
+m=$num1
+
+if [ $num2 -lt $num1 ]
+then 
+m=$num2
+fi
+
+while [ $m -ne 0 ] 
+do
+x=`expr $num1 % $m` 
+y=`expr $num2 % $m` 
+  
+if [[ "$x" -eq 0 && "$y" -eq 0 ]] 
+then 
+  echo gcd of $num1 and $num2 is $m 
+break
+fi 
+
+m=`expr $m - 1` 
+  
+done 
+
+
+
+15 // contents of the shellscript
+
+  #! /bin/bash
+
+read -p 'Enter string' strname
+
+while [ "$strname" != "Bye" ]
+do    
+  echo " $strname "
+  read -p 'Enter string' strname
+done
+
+
+17 // contents of a shell script 
+
+  #!/bin/bash
+read -p "Enter a string: " string
+if [[ "$(echo "$string" | rev)" == "$string" ]]; then
+    echo "Palindrome"
+fi  
+
+
+18 // contents of the shell script
+
+ #! /bin/bash
+
+read -p 'File 1' fileone
+read -p 'file 2' filetwo
+
+if [ -e $fileone ]
+then
+   echo "File 1 exists "
+else
+   echo " File 1 does not exist "
+fi
+
+if [ -e $filetwo ]
+then
+   echo "File 2 exists "
+else
+   echo " File 2 does not exist "
+fi 
+
+19 // contents of the shell script
+
+    #!/bin/bash
+
+select DRINK in tea cofee water juice appe all none
+do
+   case $DRINK in
+      tea|cofee|water|all) 
+         echo "Go to canteen"
+         ;;
+      juice|appe)
+         echo "Available at home"
+      ;;
+      none) 
+         break 
+      ;;
+      *) echo "ERROR: Invalid selection" 
+      ;;
+   esac
+done
+
+20 // contents of the shell script
+
+#! /bin/bash
+
+count(){
+echo The number of words
+echo "The number of lines in the file is : `wc -l <$1`"
+echo The number of words
+echo "The number of words in the file is : `wc -w < $1`"
+echo The umber of words
+echo "The number of characterss in the file is : `wc -c <$1`"
+}
+
+
+echo "Enter the filename"
+read filename
+count $filename
+
+#the program ends
+
+
+21 // contents of the shell script 
+
+matrix[i][j] = array[i*n + j]
+#Bash script to add two matrix
+matrix1=(1 2 3 4 5 6 7 8 9) #Matrix of size 3 by 3
+matrix2=(11 12 13 14 15 16 17 18 18 19) #Matrix of size 3 by 3
+rows=3
+cols=3
+echo "First matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix1[index]} "
+  done
+  echo
+done
+ 
+echo "Second matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix2[index]} "
+  done
+  echo
+done
+ 
+k=0
+matrix3=()
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    matrix3[k]=$((${matrix1[index]} + ${matrix2[index]}))
+    k=$((k+1))
+  done
+done
+echo "Addition of two matrix"
+for((i=0; i<rows; i++))
+do
+  for((j=0; j<cols; j++))
+  do
+    index=$((i*cols+j))
+    echo -n "${matrix3[index]} "
+  done
+  echo
+done
+
+
+// Fibonacci Sequence
+
+#! /bin/bash
+
+read -p "Enter range" n
+ fnpp=0
+ fnp=1
+
+for(( i=0; i<n; i++))
+do
+   echo -n "$fnpp"
+   fn=$((fnp+fnpp))
+   fnp=$fnpp
+   fnpp=$fn
+done
+echo
+
+
+// Checking is number is palindrome 
+
+#! /bin/bash
+read number
+
+n=$number
+nr=`echo $n | rev`
+
+if [ $n == $nr ]
+then 
+    echo "PALINDROME"
+else
+    echo "NOT PALINDROME"
+fi
+
+
+// Fibonacci numbers
+
+#! /bin/bash
+
+read -p "Enter range" n
+ fnpp=0
+ fnp=1
+
+for(( i=0; i<n; i++))
+do
+   echo -n "$fnpp"
+   fn=$((fnp+fnpp))
+   fnp=$fnpp
+   fnpp=$fn
+done
+echo
