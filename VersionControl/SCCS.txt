@@ -1,0 +1,67 @@
+SCCS (The Source Code Control System)
+
+1. Install sccs by using the following command: $ sudo apt install cssc ## CSSC (Compatibly Stupid Source Control) is a software suite that contains SCCS.
+
+2. Open ‘An Introduction to the Source Code Control System’ by Eric Allman at: http://sccs.sourceforge.net/man/sccs.me.html . Read Sections 1 and 2 to learn the basic functions and terminology of sccs. However, the term ‘ID keywords’ is not properly explained in the aforementioned reference. To mend the gap, read Section ‘Incorporating Version-Dependent Information by Using ID Keywords’ at: https://docs.oracle.com/cd/E19504-01/802-5880/6i9k05dhp/index.html .
+
+3. Enter the following commands to create a new source file (prog.c) and put it into SCCS format: $ mkdir sccs_test
+
+$ cd sccs_test ## Create a file named prog.c and ## add a line to it.
+
+$ echo 'This is the first line.' > prog.c
+
+$ mkdir SCCS ## The following command puts prog.c into SCCS format.
+
+## It creates an s-file for prog.c, named s.prog.c, and save it inside the SCCS sub- directory.
+
+$ sccs create prog.c
+
+4. Enter the following command to get the latest version of prog.c for compilation i.e. in a read-only mode. See Section 4 at: http://sccs.sourceforge.net/man/sccs.me.html . $ sccs get prog.c
+
+5. Enter the following commands for getting a copy of the latest version of prog.c for editing.
+
+$ sccs edit prog.c ## you may also use an equivalent command which is
+
+## $ sccs get -e prog.c
+
+## Gather info on what is going on. ## The following command tells you whether any file is being edited and if so then who is editing it. $ sccs info prog.c: being edited: 1.2 1.3 cse 19/08/26 17:12:45
+
+## User ‘cse’ it editing prog.c since 19/08/26 17:12:45. ## The version number of the file is 1.2.1.3.
+
+## Gather info on whether user named cse is editing any file. $ sccs info -ucse
+
+prog.c: being edited: 1.2 1.3 cse 19/08/26 17:12:45
+
+## Append (i.e. ‘>>’) a new line to prog.c
+
+$ echo 'This is the second line.' >> prog.c
+
+## Print the changes you have made $ sccs diffs prog.c ## Put your changes into SCCS/s.prog.c i.e. create a delta, thus creating a new version of prog.c.
+
+$ sccs delta prog.c
+
+## This command will ask for a comment. Add a comment that describes the change you have made. For example, ‘Added a second line’.
+
+## See Sections 5.1, 5.2 and 5.3 at: http://sccs.sourceforge.net/man/sccs.me.html .
+
+6. Make some changes but discard them i.e. revert to the last version. $ sccs edit prog.c ## Make some changes
+
+$ echo ‘This is the third line.’ >> prog.c ## Discard the changes i.e. revert to the last version $ sccs unedit prog.c
+
+7. Get a specific version of a source file. ## Get version 1.1 of prog.c for compilation $ sccs get -r1.1 prog.c
+
+## or ## Get a copy of version 1.1 of prog.c for editing $ sccs edit -r1.1 prog.c
+
+8. Print the delta comments i.e. the change history of a file. $ sccs prt prog.c
+
+9. In case, you have missed something while writing a comment in a specific version, edit the comment. ## Edit the delta comment of version 1.2 of prog.c. ## This command will prompt for entering the new comment. $ sccs cdc -r1.2 prog.c
+
+10. Exclude a particular delta i.e. changes made in a particular version. ## Exclude delta 1.2 $ sccs edit -x1.2 prog.c ## Check whether the changes of delta 1.2 are still present in the file or not. They should not be present.
+
+$ sccs diffs prog.c $ cat prog.c
+
+## Save the changes in a new delta $ sccs delta prog.c ## Note: ## The following command excludes a range of deltas -- delta 1.3 to delta 1.5 . ## $ sccs edit -x1.3-1.5 prog.c ## The following command excludes delta 1.3 to the last delta of release 1. ## If prog.c has 10 versions in release 1: delta 1.1 to delta 1.10, then the following command excludes delta 1.3 to delta 1.10. ## $ sccs edit -x1.3-1 prog.c
+
+11. Version numbers are usually in the form of ‘x.y’, where x = major release, y = minor changes. Suppose, prog.c is at version 1.3 (release 1 version 3). Get a copy of it for the next major release i.e. release 2.1 (release 2 version 1) using: $ sccs edit -r2 prog.c ## or ## You may change the release number of all source files in the current directory using: $ sccs edit -r2 SCCS
+
+12. Use SCCS with Make: See Section 13 of ‘An Introduction to the Source Code Control System’ by Eric Allman at: http://sccs.sourceforge.net/man/sccs.me.html
